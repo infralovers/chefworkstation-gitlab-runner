@@ -4,6 +4,7 @@ FROM ubuntu:20.04
 
 ARG CHANNEL=stable
 ARG CHEF_VERSION=20.6.62
+ARG TERRAFORM_VERSION=0.12.26
 
 ENV DEBIAN_FRONTEND=noninteractive \
   PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:/root/.chefdk/gem/ruby/2.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -40,6 +41,11 @@ RUN wget --quiet --content-disposition "https://packages.chef.io/files/${CHANNEL
   apt-get autoremove -y && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN curl -L -o /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
+    && unzip /tmp/terraform.zip \
+    && mv terraform /usr/local/bin/ \
+    && rm /tmp/terraform.zip
 
 VOLUME /var/run/docker.sock
 
