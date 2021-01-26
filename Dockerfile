@@ -1,10 +1,8 @@
 FROM ubuntu:20.04
 
-
-
-ARG CHANNEL=stable
+ARG CHEF_CHANNEL=stable
 ARG CHEF_VERSION=20.6.62
-ARG TERRAFORM_VERSION=0.12.26
+ARG TERRAFORM_VERSION=0.14.5
 
 ENV DEBIAN_FRONTEND=noninteractive \
   PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:/root/.chefdk/gem/ruby/2.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -31,7 +29,7 @@ RUN curl -fsSL "https://download.docker.com/linux/$(lsb_release -is | awk '{prin
   apt-get install -y docker-ce
 
 
-RUN wget --quiet --content-disposition "https://packages.chef.io/files/${CHANNEL}/chef-workstation/${CHEF_VERSION}/$(lsb_release -is | awk '{print tolower($0)}')/$(lsb_release -rs )/chef-workstation_${CHEF_VERSION}-1_amd64.deb" -O /tmp/chefdk.deb && \
+RUN wget --quiet --content-disposition "https://packages.chef.io/files/${CHEF_CHANNEL}/chef-workstation/${CHEF_VERSION}/$(lsb_release -is | awk '{print tolower($0)}')/$(lsb_release -rs )/chef-workstation_${CHEF_VERSION}-1_amd64.deb" -O /tmp/chefdk.deb && \
   dpkg -i /tmp/chefdk.deb && \
   CHEF_LICENSE="accept-no-persist" chef gem install kitchen-docker && \
   CHEF_LICENSE="accept-no-persist" chef gem install kitchen-openstack && \
