@@ -1,8 +1,8 @@
 FROM ubuntu:20.04
 
 ARG CHEF_CHANNEL=stable
-ARG CHEF_VERSION=20.6.62
-ARG TERRAFORM_VERSION=0.14.5
+ARG CHEF_VERSION=21.7.524
+ARG TERRAFORM_VERSION=1.0.2
 
 ENV DEBIAN_FRONTEND=noninteractive \
   PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:/root/.chefdk/gem/ruby/2.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -20,7 +20,9 @@ RUN apt-get update && \
   libxss1 \
   build-essential \
   virtualbox \
-  vagrant
+  vagrant \
+  ansible \
+  ruby-dev
 
 # install docker
 RUN curl -fsSL "https://download.docker.com/linux/$(lsb_release -is | awk '{print tolower($0)}')/gpg" | apt-key add - && \
@@ -35,7 +37,6 @@ RUN wget --quiet --content-disposition "https://packages.chef.io/files/${CHEF_CH
   CHEF_LICENSE="accept-no-persist" chef gem install kitchen-openstack && \
   CHEF_LICENSE="accept-no-persist" chef gem install kitchen-terraform && \
   CHEF_LICENSE="accept-no-persist" chef gem install knife-openstack && \
-  apt-get remove -y build-essential && \
   apt-get autoremove -y && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
