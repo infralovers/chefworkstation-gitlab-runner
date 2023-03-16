@@ -1,8 +1,8 @@
 FROM ubuntu:22.04
 
 ARG CHEF_CHANNEL=stable
-ARG CHEF_VERSION=21.7.524
-ARG TERRAFORM_VERSION=1.0.2
+ARG CHEF_VERSION=21.11.679
+ARG TERRAFORM_VERSION=1.4.1
 
 ENV DEBIAN_FRONTEND=noninteractive \
   PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:/root/.chefdk/gem/ruby/2.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -47,5 +47,3 @@ RUN curl -L -o /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TER
     && rm /tmp/terraform.zip
 
 VOLUME /var/run/docker.sock
-
-
