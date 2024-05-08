@@ -1,3 +1,14 @@
+## 1.0.1 (2024-05-08)
+
+#### Bug Fixes
+
+* Change workflow (d25a1d4c)
+
+#### Chores
+
+* **ci:** commit changes from go-semantic-release (f75d8edb)
+
+
 ## 1.0.0 (2023-03-17)
 
 #### Bug Fixes
