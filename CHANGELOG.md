@@ -1,3 +1,16 @@
+## 1.0.2 (2026-03-03)
+
+#### Bug Fixes
+
+* remove bot access token (7ce038b1)
+* ci workflow (2785eaa0)
+* ci workflow (cfe8aa40)
+* ci workflow (48ffe3dc)
+* ci workflow (71519018)
+* ci workflow (2ed7c3f7)
+* ci workflow (87967d14)
+
+
 ## 1.0.1 (2024-05-08)
 
 #### Bug Fixes
