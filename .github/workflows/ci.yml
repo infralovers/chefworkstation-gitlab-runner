@@ -18,6 +18,6 @@ jobs:
     uses: infralovers/.github/.github/workflows/container.yml@main
     with:
       dockerfile: Dockerfile
-      score: 10
+      score: 20
       platforms: "linux/amd64"
       release: true
